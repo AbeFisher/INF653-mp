@@ -21,9 +21,7 @@
     // --------------------------------------
     public function read() {
       // Create query
-      $query = 'SELECT
-                    id, quote, author_id, category_id
-                FROM quotes';
+      $query = 'SELECT * FROM quotes';
 
       // Prepare statement
       $stmt = $this->cn->prepare($query);
