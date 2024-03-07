@@ -26,18 +26,26 @@
         public function connect() {
         if ($this->cn) {
             //  connection already exists, so return it
+            echo "\n\nConnection already exists!  Returning existing connection.";
             return $this->cn;
         }
         else {
-            $dsn = "pgsql:host={$this->host};port={$this->port};dbname={$this->dbName};";
+            $dsn = "pgsql:host={$this->host};port={$this->port};dbname={$this->dbName}";
+            echo "\n\nAttempting to connect database:\n";
+            echo "\tdsn: " . $dsn;
 
             try {
-            $this->cn = new PDO($dsn, $this->user, $this->pw);
-            $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $this->cn;
+                echo "\n\tusername: " . $this->user;
+                echo "\n\tpassword: " . $this->pw;
+                $this->cn = new PDO($dsn, $this->user, $this->pw);
+                $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                echo "\n\n\tDatabase connect function completed successfully.  Returning new connection.\n";
+                echo "\n\tcn: " . json_encode($this->cn);
+
+                return $this->cn;
             }
             catch (PDOException $e) {
-            echo 'Connection Error: ' . $e->getMessage();
+                echo "\n\nConnection Error: \n\t" . $e->getMessage();
             }
         }
         }

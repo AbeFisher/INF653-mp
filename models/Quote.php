@@ -14,26 +14,40 @@
     
     // Constructor with DB
     public function __construct($db) {
-      $this->cn = $db;
+        echo "\n\nStarting function '__construct";
+        echo "\ndb: " . var_dump($db);
+        $this->cn = $db;
+        echo "\ncn: " . var_dump($this->cn);
     }
 
     // READ ALL
     // --------------------------------------
     public function read() {
+      echo "\n\nIn Quote.php, 'read()' function:\n";
+
       // Create query
       $query = "SELECT * FROM authors";
 
       // Prepare statement
-      $stmt = $this->cn->prepare($query);
-
-      echo "\n\nIn Quote.php, 'read()' function:\n";
-      echo "$stmt Server:  ";
-      echo var_dump($stmt->$_SERVER) . "\n\n";
+      try {
+        $stmt = $this->cn->prepare($query);
+        echo "\n\nStatement prepared successfully.\n";
+      } catch (PDOException $e) {
+          echo "\nError preparing Statment: \n" . $e->getMessage();
+      }
 
       // Execute query
-      $stmt->execute();
+      try {
+        $stmt->execute();
+        echo "\nStatement executed successfully.\n";
+        return $stmt;
+      }
+      catch (PDOException $e) {  
+        echo "\n\nStatment execution failed.\n" . $e->getMessage();
+        echo "\ncn: " . var_dump(this->$cn);
+      }
 
-      return $stmt;
+      return null;
     }
 
     // READ SINGLE

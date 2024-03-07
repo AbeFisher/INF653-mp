@@ -16,16 +16,21 @@
 
   // Instantiate DB & connect
   $database = new Database();
-  $db = $database->connect();
+  try {
+    $db = $database->connect();
+    echo "\n\nDatabase connected successfully.";
+    echo "\ndb: " . var_dump($db);
+  }
+  catch (PDOException $e) {
+    echo "\n\nDatabase failed to connect.\n" . $e.getMessage();
+  }
+
 
   echo "\n\nDatabase creation succeeded.\n";
   echo var_dump($db);
 
   // Instantiate quote object
   $quote = new Quote($db);
-
-  echo "\n\nQuote object created.\n";
-  echo var_dump($quote);
 
   // quote query
   $result = $quote->read();
