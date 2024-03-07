@@ -1,2 +1,2 @@
 <?php
-    echo "hello Azure!";
+    echo "Welcome Message.";
