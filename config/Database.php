@@ -14,11 +14,11 @@
         $this->host = getenv('HOST');
         $this->port = getenv('PORT');
 
-        echo "\nuser:    " . $this->user;
-        echo "\npw:      " . $this->pw;
-        echo "\ndbName:  " . $this->dbName;
-        echo "\nhost     " . $this->host;
-        echo "\nport:    " . $this->port;
+        // echo "\nuser:    " . $this->user;
+        // echo "\npw:      " . $this->pw;
+        // echo "\ndbName:  " . $this->dbName;
+        // echo "\nhost     " . $this->host;
+        // echo "\nport:    " . $this->port;
 
         }
 

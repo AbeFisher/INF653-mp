@@ -21,10 +21,13 @@
     // --------------------------------------
     public function read() {
       // Create query
-      $query = 'SELECT * FROM authors';
+      $query = "SELECT * FROM authors";
 
       // Prepare statement
       $stmt = $this->cn->prepare($query);
+
+      echo "\n\nIn Quote.php, 'read()' function:\n";
+      echo "$stmt:  " . var_dump($stmt) . "\n\n";
 
       // Execute query
       $stmt->execute();
