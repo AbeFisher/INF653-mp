@@ -21,7 +21,7 @@
     // --------------------------------------
     public function read() {
       // Create query
-      $query = 'SELECT * FROM quotes';
+      $query = 'SELECT * FROM authors';
 
       // Prepare statement
       $stmt = $this->cn->prepare($query);
