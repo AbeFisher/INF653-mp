@@ -9,4 +9,4 @@
         exit();
     }
 
-    echo "Quotes end-point";
+    echo "New Message";
