@@ -12,18 +12,32 @@
   include_once '../../config/Database.php';
   include_once '../../models/Quote.php';
 
+  echo "in 'read.php':  header section completed.";
+
   // Instantiate DB & connect
   $database = new Database();
   $db = $database->connect();
 
+  echo 'Database creation succeeded.';
+  echo var_dump($db);
+
   // Instantiate quote object
   $quote = new Quote($db);
+
+  echo 'Quote object created.';
+  echo var_dump($quote);
 
   // quote query
   $result = $quote->read();
 
+  echo 'Read results received.';
+  echo var_dump($result);
+
   // Get row count
   $num = $result->rowCount();
+
+  echo 'Data rows retrieved:';
+  echo $num;
 
   // Check if any quotes
   if($num > 0) {
