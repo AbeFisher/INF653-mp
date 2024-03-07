@@ -17,7 +17,7 @@
         echo "\nuser:    " . $this->user;
         echo "\npw:      " . $this->pw;
         echo "\ndbName:  " . $this->dbName;
-        echo "\nhost     " . $this-host;
+        echo "\nhost     " . $this->host;
         echo "\nport:    " . $this->port;
 
         }
