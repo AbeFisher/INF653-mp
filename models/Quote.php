@@ -27,7 +27,8 @@
       $stmt = $this->cn->prepare($query);
 
       echo "\n\nIn Quote.php, 'read()' function:\n";
-      echo "$stmt Server:  " . $stmt->$_SERVER . "\n\n";
+      echo "$stmt Server:  ";
+      echo var_dump($stmt->$_SERVER) . "\n\n";
 
       // Execute query
       $stmt->execute();
