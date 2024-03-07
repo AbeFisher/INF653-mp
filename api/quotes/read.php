@@ -12,31 +12,31 @@
   include_once '../../config/Database.php';
   include_once '../../models/Quote.php';
 
-  echo nl2br("\nIn 'read.php':  header section completed.");
+  echo "<br>In 'read.php':  header section completed.";
 
   // Instantiate DB & connect
   $database = new Database();
   $db = $database->connect();
 
-  echo nl2br('\n\nDatabase creation succeeded.\n');
+  echo '<br><br>Database creation succeeded.<br>';
   echo var_dump($db);
 
   // Instantiate quote object
   $quote = new Quote($db);
 
-  echo nl2br('\n\nQuote object created.\n');
+  echo '<br><br>Quote object created.<br>';
   echo var_dump($quote);
 
   // quote query
   $result = $quote->read();
 
-  echo nl2br('\n\nRead results received.\n');
+  echo '<br><br>Read results received.<br>';
   echo var_dump($result);
 
   // Get row count
   $num = $result->rowCount();
 
-  echo nl2br('\n\nData rows retrieved:\n');
+  echo '<br><br>Data rows retrieved:<br>';
   echo $num;
 
   // Check if any quotes
