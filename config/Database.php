@@ -30,7 +30,7 @@
             return $this->cn;
         }
         else {
-            $dsn = "pgsql:host={$this->host};port={$this->port};dbname={$this->dbName}";
+            $dsn = "pgsql:host={$this->host};port={$this->port};dbname={$this->dbName};";
             echo "\n\nAttempting to connect database:\n";
             echo "\tdsn: " . $dsn;
 

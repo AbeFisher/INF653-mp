@@ -1,5 +1,5 @@
 SetEnv USERNAME "theodoc2013"
-SetEnv PASSWORD "aaf7iraabrcmN92i66eKxF6W80FXwA6m"
-SetEnv DBNAME "inf653"
-SetEnv HOST "dpg-cnkaakn79t8c73d10fq0-a.oregon-postgres.render.com"
+SetEnv PASSWORD "J7BrhLYOtkmQfvoPaC0Nhbi8mt1twQoi"
+SetEnv DBNAME "abf_quotesdb"
+SetEnv HOST "dpg-cnm89rmv3ddc73fifsl0-a.oregon-postgres.render.com"
 SetEnv PORT "5432"

@@ -26,7 +26,14 @@
       echo "\n\nIn Quote.php, 'read()' function:\n";
 
       // Create query
-      $query = "SELECT * FROM authors";
+      $query = "SELECT
+                  c.category as category_name,
+                  a.author as author_name,
+                  q.id, q.quote, q.author_id, q.category_id
+                FROM " . $this->table . " q
+                  LEFT JOIN categories c ON q.category_id = c.id
+                  LEFT JOIN authors a ON q.author_id = a.id
+                ORDER BY category_name ASC, author_name ASC";
 
       // Prepare statement
       try {
