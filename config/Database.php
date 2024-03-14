@@ -8,7 +8,7 @@
         private $pw;
 
         public function __construct() {
-        $this->user = getenv('USERNAME');
+        $this->user = getenv('USER_NAME');
         $this->pw = getenv('PASSWORD');
         $this->dbName = getenv('DBNAME');
         $this->host = getenv('HOST');
