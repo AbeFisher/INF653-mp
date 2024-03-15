@@ -14,16 +14,12 @@
     
     // Constructor with DB
     public function __construct($db) {
-        echo "\n\nStarting function '__construct";
-        echo "\ndb: " . var_dump($db);
         $this->cn = $db;
-        echo "\ncn: " . var_dump($this->cn);
     }
 
     // READ ALL
     // --------------------------------------
     public function read() {
-      echo "\n\nIn Quote.php, 'read()' function:\n";
 
       // Create query
       $query = "SELECT
@@ -33,28 +29,15 @@
                 FROM " . $this->table . " q
                   LEFT JOIN categories c ON q.category_id = c.id
                   LEFT JOIN authors a ON q.author_id = a.id
-                ORDER BY category_name ASC, author_name ASC";
+                ORDER BY id ASC";
 
       // Prepare statement
-      try {
         $stmt = $this->cn->prepare($query);
-        echo "\n\nStatement prepared successfully.\n";
-      } catch (PDOException $e) {
-          echo "\nError preparing Statment: \n" . $e->getMessage();
-      }
 
       // Execute query
-      try {
         $stmt->execute();
-        echo "\nStatement executed successfully.\n";
-        return $stmt;
-      }
-      catch (PDOException $e) {  
-        echo "\n\nStatment execution failed.\n" . $e->getMessage();
-        echo "\ncn: " . var_dump(this->$cn);
-      }
 
-      return null;
+      return $stmt;
     }
 
     // READ SINGLE

@@ -12,22 +12,9 @@
   include_once '../../config/Database.php';
   include_once '../../models/Quote.php';
 
-  echo "\nIn 'read.php':  header section completed.";
-
   // Instantiate DB & connect
   $database = new Database();
-  try {
-    $db = $database->connect();
-    echo "\n\nDatabase connected successfully.";
-    echo "\ndb: " . var_dump($db);
-  }
-  catch (PDOException $e) {
-    echo "\n\nDatabase failed to connect.\n" . $e.getMessage();
-  }
-
-
-  echo "\n\nDatabase creation succeeded.\n";
-  echo var_dump($db);
+  $db = $database->connect();
 
   // Instantiate quote object
   $quote = new Quote($db);
@@ -35,14 +22,8 @@
   // quote query
   $result = $quote->read();
 
-  echo "\n\nRead results received.\n";
-  echo var_dump($result);
-
   // Get row count
   $num = $result->rowCount();
-
-  echo "\n\nData rows retrieved:\n";
-  echo $num;
 
   // Check if any quotes
   if($num > 0) {
