@@ -20,7 +20,6 @@
     // READ ALL
     // --------------------------------------
     public function read() {
-
       // Create query
       $query = "SELECT
                   c.category as category_name,
