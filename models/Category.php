@@ -18,8 +18,8 @@
     public function read() {
       // Create query
       $query = 'SELECT id, category
-                FROM ' . $this->table . 
-               'ORDER BY category ASC';
+                FROM ' . $this->table . '
+                ORDER BY category ASC';
 
       // Prepare statement
       $stmt = $this->cn->prepare($query);
@@ -51,8 +51,16 @@
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // set properties
-        $this->id = $row['id'];
-        $this->category = $row['category'];
+        if ($row) {
+          $this->id = $row['id'];
+          $this->category = $row['category'];  
+        }
+        else {
+          $this->id = null;
+          $this->category = null;
+          echo json_encode(array("message" => "Empty set:  id entered does not exist."));
+        }
+        
     }
 
 

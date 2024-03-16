@@ -16,16 +16,21 @@
 
     switch ($method) {
         case 'GET':
-            if (getID()) { require 'read_single.php'; }
-            else { require 'read.php'; }
+            if (!GetID()) { require 'read.php'; }
+            else {
+                if (validateID($method)) { require 'read_single.php'; }
+                else {
+                    die();
+                }
+            }
             break;
 
         case 'PUT':
-            if (validateData()) { require 'update.php'; }
+            if (validateQuoteData($method)) { require 'update.php'; }
             break;
 
         case 'POST':
-            if (validateData()) { require 'create.php'; }
+            if (validateQuoteData($method)) { require 'create.php'; }
             break;
 
         case 'DELETE':

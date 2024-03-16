@@ -65,12 +65,23 @@
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // set properties
-        $this->id = $row['id'];
-        $this->quote = $row['quote'];
-        $this->author_id = $row['author_id'];
-        $this->author_name = $row['author_name'];
-        $this->category_id = $row['category_id'];
-        $this->category_name = $row['category_name'];
+        if ($row) {
+          $this->id = $row['id'];
+          $this->quote = $row['quote'];
+          $this->author_id = $row['author_id'];
+          $this->author_name = $row['author_name'];
+          $this->category_id = $row['category_id'];
+          $this->category_name = $row['category_name'];  
+        }
+        else {
+          $this->id = null;
+          $this->quote = null;
+          $this->author_id = null;
+          $this->author_name = null;
+          $this->category_id = null;
+          $this->category_name = null;
+          echo json_encode(array("message" => "Empty set:  id entered does not exist."));          
+        }        
     }
 
     // CREATE NEW QUOTE

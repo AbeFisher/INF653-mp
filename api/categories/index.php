@@ -4,25 +4,33 @@
     $method = $_SERVER['REQUEST_METHOD'];
 
     include_once '../../config/Database.php';
-    include_once '../../models/Quote.php';  
-    include_once '../../Utilities/getID.php';
+    include_once '../../models/Category.php';  
+    include_once '../../Utilities/utilities.php';
 
     // Instantiate DB & connect
     $database = new Database();
     $db = $database->connect();
 
-    switch ($method) {
+    // Instantiate Category object
+    $category = new Category($db);
+
+     switch ($method) {
         case 'GET':
-            if (getID()) { require 'read_single.php'; }
-            else { require 'read.php'; }
+            if (!GetID()) { require 'read.php'; }
+            else {
+                if (validateID($method)) { require 'read_single.php'; }
+                else {
+                    die();
+                }
+            }
             break;
 
         case 'PUT':
-            require 'update.php';
+            if (validateCategoryData($method)) { require 'update.php'; }
             break;
 
         case 'POST':
-            require 'create.php';
+            if (validateCategoryData($method)) { require 'create.php'; }
             break;
 
         case 'DELETE':

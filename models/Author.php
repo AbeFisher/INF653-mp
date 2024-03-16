@@ -18,8 +18,8 @@
     public function read() {
       // Create query
       $query = 'SELECT id, author
-                FROM ' . $this->table . 
-               'ORDER BY author ASC';
+                FROM ' . $this->table . ' 
+                ORDER BY author ASC';
 
       // Prepare statement
       $stmt = $this->cn->prepare($query);
@@ -51,8 +51,15 @@
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // set properties
-        $this->id = $row['id'];
-        $this->author = $row['author'];
+        if ($row) {
+          $this->id = $row['id'];
+          $this->author = $row['author'];  
+        }
+        else {
+          $this->id = null;
+          $this->author = null;
+          echo json_encode(array("message" => "Empty set:  id entered does not exist."));
+        }
     }
 
 
