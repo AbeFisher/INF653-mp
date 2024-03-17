@@ -7,6 +7,8 @@
     include_once '../../models/Author.php';  
     include_once '../../Utilities/utilities.php';
 
+    echo "Welcome to the Authors Module!";
+
     // Instantiate DB & connect
     $database = new Database();
     $db = $database->connect();
