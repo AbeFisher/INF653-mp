@@ -67,7 +67,7 @@
     // --------------------------------------
     public function create() {
         // Create Query
-        $query = 'INSERT INTO ' . $this->table . ' (author) VALUES (:author)';
+        $query = 'INSERT INTO ' . $this->table . ' (author) VALUES (:author) RETURNING id';
 
         // Prepare Statement
         $stmt = $this->cn->prepare($query);
@@ -80,7 +80,15 @@
 
         // Execute query
         if($stmt->execute()) {
-            return true;
+          $row = $stmt->fetch(PDO::FETCH_ASSOC);
+          if ($row) {
+            $author_ary = array(
+              'id' => $row['id'],
+              'author' => $this->author,
+            );
+            print_r(json_encode($author_ary));
+          }
+          return true;
         }
 
         // Print error if something goes wrong

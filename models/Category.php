@@ -68,7 +68,7 @@
     // --------------------------------------
     public function create() {
         // Create Query
-        $query = 'INSERT INTO ' . $this->table . ' (category) VALUES (:category)';
+        $query = 'INSERT INTO ' . $this->table . ' (category) VALUES (:category) RETURNING id';
 
         // Prepare Statement
         $stmt = $this->cn->prepare($query);
@@ -81,7 +81,15 @@
 
         // Execute query
         if($stmt->execute()) {
-            return true;
+          $row = $stmt->fetch(PDO::FETCH_ASSOC);
+          if ($row) {
+            $category_ary = array(
+              'id' => $row['id'],
+              'category' => $this->category,
+            );
+            print_r(json_encode($category_ary));
+          }
+          return true;
         }
 
         // Print error if something goes wrong

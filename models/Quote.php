@@ -89,7 +89,7 @@
     public function create() {
         // Create Query
         $query = 'INSERT INTO ' . $this->table . ' (quote, author_id, category_id) 
-                  VALUES (:quote, :author_id, :category_id)';
+                  VALUES (:quote, :author_id, :category_id) RETURNING id';
 
         // Prepare Statement
         $stmt = $this->cn->prepare($query);
@@ -106,7 +106,19 @@
 
         // Execute query
         if($stmt->execute()) {
-            return true;
+          $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+          if ($row) {
+            $quote_ary = array(
+              'id' => $row['id'],
+              'quote' => $this->quote,
+              'author_id' => $this->author_id,
+              'category_id' => $this->category_id
+            );
+            print_r(json_encode($quote_ary));
+          }
+
+          return true;
         }
 
         // Print error if something goes wrong
