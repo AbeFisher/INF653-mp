@@ -15,11 +15,9 @@
 
       $quote_item = array(
         'id' => $id,
-        'author_id' => $author_id,
-        'author_name' => $author_name,
-        'category_id' => $category_id,
-        'category_name' => $category_name,
-        'quote' => $quote
+        'quote' => $quote,
+        'author' => $author_name,
+        'category' => $category_name
       );
 
       // push quote_item onto array
