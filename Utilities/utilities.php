@@ -27,8 +27,8 @@
 
         $data = json_decode(file_get_contents("php://input"));
         if (!$data) {
-            $valid = false;
-            array_push($msgAry, 'ValidateQuoteData', 'Missing or improperly formatted Data.');
+            echo json_encode(array("message" => "Missing Required Parameters"));
+            exit();
         }
         else {
             //  Validate ID
@@ -40,8 +40,8 @@
                 exit();
             }
             else if (!is_int($data->author_id)) {
-                array_push($msgAry, 'ValidateQuoteData', 'Invalid data: author_id must be an integer.');
-                $valid = false;            
+                echo json_encode(array("message" => "Invalid data: author_id must be an integer"));
+                exit();
             }
     
             //  Validate category_id
@@ -50,20 +50,21 @@
                 exit();
             }
             else if (!is_int($data->category_id)) {
-                array_push($msgAry, 'ValidateQuoteData', 'Invalid data: category_id must be an integer.');
-                $valid = false;            
+                echo json_encode(array("message" => "Invalid data: category_id must be an integer"));
+                exit();
             }
     
             //  Validate quote
             if (!isset($data->quote)) {
-                array_push($msgAry, 'ValidateQuoteData', 'Missing data: quote is null.');
-                $valid = false;
+                echo json_encode(array("message" => "Missing Required Parameters"));
+                exit();
             }
         }
      
-        if (count($msgAry) > 0) {
-            echo json_encode($msgAry);
-        }
+        // if (count($msgAry) > 0) {
+        //     echo json_encode($msgAry);
+        // }
+
         return $valid;
     }
 
@@ -74,8 +75,8 @@
         $data = json_decode(file_get_contents("php://input"));
 
         if (!$data) {
-            $valid = false;
-            array_push($msgAry, 'ValidateAuthorData', 'Missing or improperly formatted Data.');
+            echo json_encode(array("message" => "Missing Required Parameters"));
+            exit();
         }
         else {
             //  Validate ID
@@ -83,14 +84,15 @@
         
             //  Validate author name
             if (!isset($data->author)) {
-                array_push($msgAry, 'ValidateAuthorData', 'Missing data: author is null.');
-                $valid = false;
-            }
+                echo json_encode(array("message" => "Missing Required Parameters"));
+                exit();
+                }
         }
      
-        if (count($msgAry) > 0) {
-            echo json_encode($msgAry);
-        }
+        // if (count($msgAry) > 0) {
+        //     echo json_encode($msgAry);
+        // }
+
         return $valid;
     }
 
@@ -100,8 +102,8 @@
 
         $data = json_decode(file_get_contents("php://input"));
         if (!$data) {
-            $valid = false;
-            array_push($msgAry, 'ValidateCategoryData', 'Missing or improperly formatted Data.');
+            echo json_encode(array("message" => "Missing Required Parameters"));
+            exit();
         }
         else {
             //  Validate ID
@@ -109,14 +111,15 @@
         
             //  Validate catgegory name
             if (!isset($data->category)) {
-                array_push($msgAry, 'ValidateCategoryData', 'Missing data: category is null.');
-                $valid = false;
-            }
+                echo json_encode(array("message" => "Missing Required Parameters"));
+                exit();
+                }
         }
 
-        if (count($msgAry) > 0) {
-            echo json_encode($msgAry);
-        }
+        // if (count($msgAry) > 0) {
+        //     echo json_encode($msgAry);
+        // }
+
         return $valid;
     }
 

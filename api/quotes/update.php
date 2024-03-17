@@ -11,9 +11,9 @@
 
   // Update quote
   if($quote->update()) {
-    echo json_encode(
-      array('message' => 'Quote Updated')
-    );
+    // echo json_encode(
+    //   array('message' => 'Quote Updated')
+    // );
   } else {
     echo json_encode(
       array('message' => 'Quote Not Updated')
