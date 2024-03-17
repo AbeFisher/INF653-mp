@@ -58,7 +58,7 @@
         else {
           $this->id = null;
           $this->category = null;
-          echo json_encode(array("message" => "Empty set:  id entered does not exist."));
+          echo json_encode(array("message" => "category_id Not Found"));
         }
         
     }

@@ -80,7 +80,7 @@
           $this->author_name = null;
           $this->category_id = null;
           $this->category_name = null;
-          echo json_encode(array("message" => "Empty set:  id entered does not exist."));          
+          echo json_encode(array("message" => "No Quotes Found"));          
         }        
     }
 
