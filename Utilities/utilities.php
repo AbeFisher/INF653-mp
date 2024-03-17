@@ -36,8 +36,8 @@
 
             //  Validate author_id
             if (!isset($data->author_id)) {
-                array_push($msgAry, 'ValidateQuoteData', 'Missing data: author_id is null.');
-                $valid = false;
+                echo json_encode(array("message" => "author_id Not Found"));
+                exit();
             }
             else if (!is_int($data->author_id)) {
                 array_push($msgAry, 'ValidateQuoteData', 'Invalid data: author_id must be an integer.');
@@ -46,8 +46,8 @@
     
             //  Validate category_id
             if (!isset($data->category_id)) {
-                array_push($msgAry, 'ValidateQuoteData', 'Missing data: category_id is null.');
-                $valid = false;
+                echo json_encode(array("message" => "category_id Not Found"));
+                exit();
             }
             else if (!is_int($data->category_id)) {
                 array_push($msgAry, 'ValidateQuoteData', 'Invalid data: category_id must be an integer.');
