@@ -119,6 +119,12 @@
 
         // Execute query
         if($stmt->execute()) {
+            $author_ary = array(
+              'id' => $this->id,
+              'author' => $this->author,
+            );
+            print_r(json_encode($author_ary));
+
             return true;
         }
 
@@ -146,6 +152,11 @@
 
         // Execute query
         if($stmt->execute()) {
+          $author_ary = array(
+            'id' => $this->id
+          );
+          print_r(json_encode($author_ary));
+
         return true;
         }
 

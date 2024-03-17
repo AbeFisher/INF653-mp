@@ -120,6 +120,12 @@
 
         // Execute query
         if($stmt->execute()) {
+            $category_ary = array(
+              'id' => $this->id,
+              'category' => $this->category,
+            );
+            print_r(json_encode($category_ary));
+
             return true;
         }
 
@@ -147,6 +153,11 @@
 
         // Execute query
         if($stmt->execute()) {
+          $category_ary = array(
+            'id' => $this->id
+          );
+          print_r(json_encode($category_ary));
+
         return true;
         }
 

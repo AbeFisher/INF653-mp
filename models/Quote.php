@@ -156,6 +156,14 @@
 
         // Execute query
         if($stmt->execute()) {
+            $quote_ary = array(
+              'id' => $this->id,
+              'quote' => $this->quote,
+              'author_id' => $this->author_id,
+              'category_id' => $this->category_id
+            );
+            print_r(json_encode($quote_ary));
+
             return true;
         }
 
@@ -183,6 +191,11 @@
 
         // Execute query
         if($stmt->execute()) {
+          $quote_ary = array(
+            'id' => $this->id
+          );
+          print_r(json_encode($quote_ary));
+
         return true;
         }
 
