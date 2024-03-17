@@ -137,7 +137,8 @@
                     quote = :quote,
                     author_id = :author_id,
                     category_id = :category_id
-                  WHERE id = :id';
+                  WHERE id = :id
+                  RETURNING id';
 
         // Prepare Statement
         $stmt = $this->cn->prepare($query);
@@ -156,13 +157,21 @@
 
         // Execute query
         if($stmt->execute()) {
-            $quote_ary = array(
-              'id' => $this->id,
-              'quote' => $this->quote,
-              'author_id' => $this->author_id,
-              'category_id' => $this->category_id
-            );
-            print_r(json_encode($quote_ary));
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($row) {
+                $quote_ary = array(
+                  'id' => $this->id,
+                  'quote' => $this->quote,
+                  'author_id' => $this->author_id,
+                  'category_id' => $this->category_id
+                );
+                print_r(json_encode($quote_ary));
+              }
+              else {
+                echo json_encode(array("message" => "No Quotes Found"));
+                exit();
+              }  
 
             return true;
         }
@@ -178,7 +187,7 @@
     // --------------------------------------
     public function delete() {
         // Create query
-        $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
+        $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id RETURNING id';
 
         // Prepare Statement
         $stmt = $this->cn->prepare($query);
@@ -191,12 +200,20 @@
 
         // Execute query
         if($stmt->execute()) {
-          $quote_ary = array(
-            'id' => $this->id
-          );
-          print_r(json_encode($quote_ary));
+          $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        return true;
+          if ($row) {
+              $quote_ary = array(
+                'id' => $this->id
+              );
+              print_r(json_encode($quote_ary));
+          }
+          else {
+            echo json_encode(array("message" => "No Quotes Found"));
+            exit();
+          }  
+
+          return true;
         }
 
         // Print error if something goes wrong
