@@ -31,11 +31,19 @@
             exit();
         }
         else {
+            //  First, make sure all parameters are at least present
+            if (!isset($data->quote) or 
+                !isset($data->author_id) or 
+                !isset($data->category_id)) {
+                echo json_encode(array('message' => 'Missing Required Parameters'));
+                exit();
+            }
+
             //  Validate ID
             $valid = validateID($method);
 
             //  Validate author_id:
-            $result = Get_Author($data->id);
+            $result = Get_Author($data->author_id);
             if (!$result->rowCount()) {
                 echo json_encode(array('message' => 'author_id Not Found'));
                 exit();
@@ -52,7 +60,7 @@
             // }
 
             //  Validate category_id:
-            $result = Get_Category($data->id);
+            $result = Get_Category($data->category_id);
             if (!$result->rowCount()) {
                 echo json_encode(array('message' => 'category_id Not Found'));
                 exit();
@@ -68,12 +76,6 @@
             //     exit();
             // }
     
-            //  Validate parameters
-            if (!isset($data->id) or !isset($data->quote) or 
-                !isset($data->author_id) or !isset($data->category_id)) {
-                echo json_encode(array('message' => 'Missing Required Parameters'));
-                exit();
-            }
 
         }
      
@@ -161,11 +163,14 @@
     }
 
     function Get_Author($id){
+        $db = new Database();
+        $cn = $db->connect();
+
         // Create query
         $query = 'SELECT * from authors where id = :id';
 
         //Prepare statement
-        $stmt = $this->cn->prepare($query);
+        $stmt = $cn->prepare($query);
 
         // Bind ID
         $stmt->bindParam(':id', $id);
@@ -178,11 +183,14 @@
     }
 
     function Get_Category($id){
+        $db = new Database();
+        $cn = $db->connect();
+
         // Create query
         $query = 'SELECT * from categories where id = :id';
 
         //Prepare statement
-        $stmt = $this->cn->prepare($query);
+        $stmt = $cn->prepare($query);
 
         // Bind ID
         $stmt->bindParam(':id', $id);
