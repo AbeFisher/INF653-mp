@@ -49,16 +49,6 @@
                 exit();
             }
 
-            // //  Validate author_id
-            // if (!isset($data->author_id)) {
-            //     echo json_encode(array('message' => 'author_id Not Found'));
-            //     exit();
-            // }
-            // else if (!is_int($data->author_id)) {
-            //     echo json_encode(array('message' => 'Invalid data: author_id must be an integer'));
-            //     exit();
-            // }
-
             //  Validate category_id:
             $result = Get_Category($data->category_id);
             if (!$result->rowCount()) {
@@ -66,23 +56,7 @@
                 exit();
             }            
             
-            // //  Validate category_id
-            // if (!isset($data->category_id)) {
-            //     echo json_encode(array('message' => 'category_id Not Found'));
-            //     exit();
-            // }
-            // else if (!is_int($data->category_id)) {
-            //     echo json_encode(array('message' => 'Invalid data: category_id must be an integer'));
-            //     exit();
-            // }
-    
-
         }
-     
-        // if (count($msgAry) > 0) {
-        //     echo json_encode($msgAry);
-        // }
-
         return $valid;
     }
 
@@ -106,11 +80,6 @@
                 exit();
                 }
         }
-     
-        // if (count($msgAry) > 0) {
-        //     echo json_encode($msgAry);
-        // }
-
         return $valid;
     }
 
@@ -133,11 +102,6 @@
                 exit();
                 }
         }
-
-        // if (count($msgAry) > 0) {
-        //     echo json_encode($msgAry);
-        // }
-
         return $valid;
     }
 
@@ -158,7 +122,6 @@
                 return false;
             }
         }
-
         return true;
     }
 

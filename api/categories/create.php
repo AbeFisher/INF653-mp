@@ -4,8 +4,6 @@
     $category->category = $data->category;
   
     // Create category
-    if($category->create()) {
-        // echo json_encode(array('message' => 'Category Created'));
-    } else {
+    if(!$category->create()) {
         echo json_encode(array('message' => 'Category Not Created'));
     }

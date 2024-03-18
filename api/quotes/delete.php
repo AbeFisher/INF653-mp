@@ -4,12 +4,6 @@
   $quote->id = $id ? $id : die();
 
    // Delete quote
-  if($quote->delete()) {
-    // echo json_encode(
-    //   array('message' => 'Quote Deleted')
-    // );
-  } else {
-    echo json_encode(
-      array('message' => 'Quote Not Deleted')
-    );
+  if(!$quote->delete()) {
+    echo json_encode(array('message' => 'Quote Not Deleted'));
   }
