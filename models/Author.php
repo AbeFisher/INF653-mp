@@ -58,7 +58,7 @@
         else {
           $this->id = null;
           $this->author = null;
-          echo json_encode(array("message" => "author_id Not Found"));
+          echo json_encode(array('message' => 'author_id Not Found'));
         }
     }
 
